@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Face — JSON</title>
+<link rel="stylesheet" href="base.css"></head><body><div class="nav"><a class="back" href="#"><svg width="11" height="17" viewBox="0 0 11 17" fill="none"><path d="M9 1.5L2 8.5L9 15.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Detectors</a><div class="title">Face</div><a class="action" href="#">Options</a></div><div class="sourcebar">
+  <div class="seg"><span class="on">Camera</span><span>Photo</span></div>
+  <div class="lens">Front <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 5H12L10.5 3M12 11H4L5.5 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+</div><div class="viewport" style="height:214px"><svg width="390" height="340" viewBox="0 0 390 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="390" height="340" fill="#111114"/>
+  <ellipse cx="190" cy="140" rx="230" ry="190" fill="#191920"/>
+
+  <!-- second subject, further back, cropped by the frame edge -->
+  <ellipse cx="372" cy="250" rx="86" ry="62" fill="#1D1D24"/>
+  <ellipse cx="368" cy="100" rx="44" ry="52" fill="#212128"/>
+  <ellipse cx="366" cy="114" rx="36" ry="44" fill="#2B2B34"/>
+  <ellipse cx="366" cy="78" rx="37" ry="24" fill="#212128"/>
+
+  <!-- primary subject -->
+  <ellipse cx="190" cy="408" rx="168" ry="108" fill="#22222B"/>
+  <rect x="167" y="226" width="46" height="64" fill="#2F2F39"/>
+  <ellipse cx="190" cy="152" rx="76" ry="88" fill="#1F1F27"/>
+  <ellipse cx="128" cy="170" rx="8" ry="15" fill="#33333F"/>
+  <ellipse cx="252" cy="170" rx="8" ry="15" fill="#33333F"/>
+  <ellipse cx="190" cy="168" rx="62" ry="76" fill="#3A3A45"/>
+  <ellipse cx="190" cy="106" rx="64" ry="40" fill="#1F1F27"/>
+
+  <!-- ── face 2: detected, not selected ── -->
+  <rect x="330" y="68" width="74" height="96" stroke="#FFFFFF" stroke-opacity="0.42" stroke-width="1"/>
+  <rect x="330" y="48" width="17" height="17" rx="4" stroke="#FFFFFF" stroke-opacity="0.48" stroke-width="1"/>
+  <text x="338.5" y="60" fill="#FFFFFF" fill-opacity="0.68" font-size="11" font-weight="600" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif">2</text>
+
+  <!-- ── face 1: selected ── -->
+  <rect x="126" y="92" width="128" height="166" stroke="#F4633A" stroke-width="1.5"/>
+  <rect x="126" y="71" width="17" height="17" rx="4" fill="#F4633A"/>
+  <text x="134.5" y="83" fill="#FFFFFF" font-size="11" font-weight="600" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif">1</text>
+
+  <g stroke="#F4633A" fill="none" stroke-width="1.2">
+    <ellipse cx="190" cy="168" rx="62" ry="76" stroke-opacity="0.5"/>
+    <path d="M150 140 C158 133 173 132 183 137" stroke-opacity="0.9"/>
+    <path d="M200 137 C210 132 225 133 231 141" stroke-opacity="0.9"/>
+    <!-- subject's right eye (viewer left): closed, matching 0.110 -->
+    <path d="M152 157 C159 162 175 162 182 156" stroke-opacity="0.9"/>
+    <!-- subject's left eye: open, matching 0.981 -->
+    <path d="M200 156 C207 147 223 147 230 155 C223 163 207 163 200 156 Z" stroke-opacity="0.9"/>
+    <path d="M192 146 L189 186" stroke-opacity="0.9"/>
+    <path d="M176 192 C182 198 198 198 204 191" stroke-opacity="0.9"/>
+    <path d="M168 212 C177 205 203 205 212 211" stroke-opacity="0.9"/>
+    <path d="M168 212 C178 224 202 224 212 211" stroke-opacity="0.9"/>
+  </g>
+
+  <g fill="#FFFFFF">
+    <circle cx="166" cy="157" r="2.1"/><circle cx="214" cy="155" r="2.1"/>
+    <circle cx="130" cy="170" r="2.1"/><circle cx="250" cy="170" r="2.1"/>
+    <circle cx="156" cy="191" r="2.1"/><circle cx="224" cy="189" r="2.1"/>
+    <circle cx="190" cy="192" r="2.1"/>
+    <circle cx="168" cy="213" r="2.1"/><circle cx="212" cy="211" r="2.1"/>
+    <circle cx="190" cy="222" r="2.1"/>
+  </g>
+</svg>
+<div class="readout"><span>2 faces</span><span class="sep">&middot;</span><span class="mono">24 ms</span></div></div>
+<div class="tabs"><button class="">Faces</button><button class="">Landmarks</button><button class="">Contours</button><button class="on">JSON</button></div>
+<div class="jsonbar"><span class="c">Frame 1,284 &middot; held</span><a href="#">Copy</a></div>
+<pre class="json mono"><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="k">"trackingId"</span><span class="p">:</span> <span class="n">7</span><span class="p">,</span>
+    <span class="k">"boundingBox"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"left"</span><span class="p">:</span> <span class="n">118</span><span class="p">,</span> <span class="k">"top"</span><span class="p">:</span> <span class="n">240</span><span class="p">,</span>
+                      <span class="k">"width"</span><span class="p">:</span> <span class="n">164</span><span class="p">,</span> <span class="k">"height"</span><span class="p">:</span> <span class="n">201</span> <span class="p">},</span>
+    <span class="k">"headEulerAngleX"</span><span class="p">:</span> <span class="n">3.1</span><span class="p">,</span>
+    <span class="k">"headEulerAngleY"</span><span class="p">:</span> <span class="n">-12.4</span><span class="p">,</span>
+    <span class="k">"headEulerAngleZ"</span><span class="p">:</span> <span class="n">0.8</span><span class="p">,</span>
+    <span class="k">"smilingProbability"</span><span class="p">:</span> <span class="n">0.9412</span><span class="p">,</span>
+    <span class="k">"leftEyeOpenProbability"</span><span class="p">:</span> <span class="n">0.9807</span><span class="p">,</span>
+    <span class="k">"rightEyeOpenProbability"</span><span class="p">:</span> <span class="n">0.1102</span><span class="p">,</span>
+    <span class="k">"landmarks"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="k">"leftEye"</span><span class="p">:</span> <span class="p">[</span><span class="n">202</span><span class="p">,</span> <span class="n">148</span><span class="p">],</span>
+      <span class="k">"rightEye"</span><span class="p">:</span> <span class="p">[</span><span class="n">152</span><span class="p">,</span> <span class="n">151</span><span class="p">],</span>
+      <span class="k">"noseBase"</span><span class="p">:</span> <span class="p">[</span><span class="n">176</span><span class="p">,</span> <span class="n">186</span><span class="p">],</span>
+      <span class="p">…</span> <span class="s">"7 more"</span>
+    <span class="p">},</span>
+    <span class="k">"contours"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"face"</span><span class="p">:</span> <span class="s">"36 points"</span><span class="p">,</span> <span class="p">… }</span>
+  <span class="p">},</span>
+  <span class="p">{</span> <span class="k">"trackingId"</span><span class="p">:</span> <span class="n">9</span><span class="p">,</span> <span class="p">… }</span>
+<span class="p">]</span></pre></body></html>

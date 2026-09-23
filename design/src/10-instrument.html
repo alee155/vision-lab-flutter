@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Bench — sensor module</title>
+<style>
+/* ── Direction: the app is a machined instrument, not a layout.
+      Everything physical is warm anodised graphite under one top light.
+      Everything the machine sees is cold, flat and luminous. The tension
+      between the two IS the concept. ─────────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:390px;height:844px;overflow:hidden}
+body{
+  background:#212226;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+.mono{font-family:ui-monospace,"SF Mono",SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+
+/* Engraved lettering: cut into the metal, so it is dark with a light lip below. */
+.engrave{
+  font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:#83868D;text-shadow:0 1px 0 rgba(255,255,255,.08);
+}
+
+/* Milled aluminium: a vertical fall of light plus a fine brushed grain. */
+.metal{
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 1px, transparent 1px 3px),
+    linear-gradient(#36373C 0%, #2B2C31 38%, #26272B 100%);
+}
+
+/* ── Top plate ─────────────────────────────────────────────────────────── */
+.plate{
+  height:56px;display:flex;align-items:center;padding:0 16px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10), 0 1px 0 rgba(0,0,0,.65);
+  position:relative;z-index:3;
+}
+.wordmark{font-size:13px;font-weight:700;letter-spacing:2.6px;color:#C6C9CE;
+  text-shadow:0 1px 0 rgba(0,0,0,.55)}
+.wordmark span{color:#6E7278}
+.plate .right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.led{
+  width:7px;height:7px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #FFE7B0, #FF9A24 55%, #A04E00);
+  box-shadow:0 0 9px 1px rgba(255,154,36,.65), inset 0 -1px 1px rgba(0,0,0,.45),
+             0 0 0 2px rgba(0,0,0,.45);
+}
+
+/* ── Lens window: a well cut into the body ─────────────────────────────── */
+.well{
+  height:400px;padding:14px;position:relative;
+  box-shadow:inset 0 3px 9px rgba(0,0,0,.75), inset 0 -1px 0 rgba(255,255,255,.05);
+}
+.glassframe{
+  height:100%;position:relative;overflow:hidden;border-radius:3px;
+  background:#0B0C0E;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.9),
+             inset 0 2px 14px rgba(0,0,0,.95),
+             0 0 0 1px rgba(255,255,255,.07);
+}
+.screw{
+  position:absolute;width:6px;height:6px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #4E5057, #1B1C1F);
+  box-shadow:inset 0 0 0 .5px rgba(0,0,0,.8), 0 1px 0 rgba(255,255,255,.07);
+}
+.screw::after{content:"";position:absolute;inset:2px 1px;background:#131417;border-radius:1px}
+
+/* ── Scale strip between window and readout ────────────────────────────── */
+.scale{
+  height:26px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 16px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07), 0 1px 0 rgba(0,0,0,.6);
+}
+.ticks{flex:1;height:10px;margin:0 12px;
+  background:repeating-linear-gradient(90deg,
+    rgba(255,255,255,.14) 0 1px, transparent 1px 9px);
+  box-shadow:0 1px 0 rgba(255,255,255,.04)}
+
+/* ── Readout: recessed cold glass ──────────────────────────────────────── */
+.readout{
+  height:192px;margin:0 14px;padding:14px 16px;border-radius:3px;
+  background:linear-gradient(#090B0D,#0D1013);
+  box-shadow:inset 0 3px 12px rgba(0,0,0,.95), inset 0 0 0 1px rgba(0,0,0,.9),
+             0 1px 0 rgba(255,255,255,.08);
+}
+.lit{color:#CFEAFF;text-shadow:0 0 10px rgba(110,190,255,.42)}
+.dim{color:#4A6072}
+.row{display:flex;align-items:center;height:26px}
+.row .k{width:62px;font-size:9px;font-weight:600;letter-spacing:1.4px;
+  text-transform:uppercase;color:#5E7789}
+.row .seg{flex:1;display:flex;gap:2px;height:9px}
+.row .seg i{flex:1;background:#16202A;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.6)}
+.row .seg i.on{background:#8FD0FF;box-shadow:0 0 6px rgba(110,190,255,.55)}
+.row .seg i.warn{background:#FFB44A;box-shadow:0 0 6px rgba(255,180,74,.55)}
+.row .v{width:52px;text-align:right;font-size:13px}
+.pose{display:flex;margin-top:12px;padding-top:12px;
+  border-top:1px solid rgba(110,190,255,.12)}
+.pose div{flex:1}
+.pose .k{font-size:8.5px;font-weight:600;letter-spacing:1.4px;color:#4A6072;
+  text-transform:uppercase;margin-bottom:3px}
+.pose .v{font-size:20px;letter-spacing:-.5px}
+
+/* ── Control deck ──────────────────────────────────────────────────────── */
+.deck{
+  position:absolute;left:0;right:0;bottom:0;height:170px;
+  display:flex;align-items:center;gap:18px;padding:0 20px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.09), 0 -1px 0 rgba(0,0,0,.6);
+}
+.dialwrap{text-align:center}
+.dial{
+  width:78px;height:78px;border-radius:50%;position:relative;
+  background:
+    repeating-conic-gradient(from 0deg, rgba(255,255,255,.055) 0deg 1.6deg, transparent 1.6deg 4deg),
+    radial-gradient(circle at 50% 24%, #4A4C53 0%, #34353A 45%, #212227 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18), inset 0 -3px 8px rgba(0,0,0,.7),
+             0 4px 10px rgba(0,0,0,.65), 0 0 0 1px rgba(0,0,0,.5);
+}
+.dial::after{
+  content:"";position:absolute;inset:17px;border-radius:50%;
+  background:radial-gradient(circle at 50% 28%, #3E4046, #26272C);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.13), 0 1px 3px rgba(0,0,0,.6);
+}
+.notch{position:absolute;left:50%;top:5px;width:2.5px;height:11px;margin-left:-1.25px;
+  background:#FFB44A;border-radius:1px;box-shadow:0 0 7px rgba(255,180,74,.8);z-index:2}
+.switches{flex:1;display:flex;flex-direction:column;gap:13px}
+.sw{display:flex;align-items:center;gap:11px}
+.rocker{
+  width:40px;height:21px;border-radius:2px;position:relative;flex:none;
+  background:linear-gradient(#1B1C20,#141518);
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.85), 0 1px 0 rgba(255,255,255,.08);
+}
+.rocker b{
+  position:absolute;top:2px;width:17px;height:17px;border-radius:1px;
+  background:linear-gradient(#4C4E55,#33343A);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22), 0 1px 3px rgba(0,0,0,.7);
+}
+.rocker.on b{right:2px}
+.rocker.off b{left:2px;background:linear-gradient(#3A3B41,#27282D)}
+.pip{width:4px;height:4px;border-radius:50%;background:#2A2B2F;flex:none;
+  box-shadow:inset 0 1px 1px rgba(0,0,0,.8)}
+.pip.on{background:#FFB44A;box-shadow:0 0 6px rgba(255,180,74,.8)}
+
+/* One grain pass over the whole body — the single detail that stops flat
+   colour from reading as a screenshot of a design tool. */
+.grain{position:absolute;inset:0;pointer-events:none;z-index:9;opacity:.5;
+  mix-blend-mode:overlay}
+</style></head>
+<body>
+
+<div class="plate metal">
+  <div class="wordmark">BENCH<span>/01</span></div>
+  <div class="right"><span class="led"></span><span class="engrave">Live</span></div>
+</div>
+
+<div class="well metal">
+  <div class="glassframe">
+    <svg width="362" height="372" viewBox="0 0 362 372" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="362" height="372" fill="#0C0D10"/>
+      <ellipse cx="181" cy="160" rx="215" ry="200" fill="#141519"/>
+      <ellipse cx="181" cy="436" rx="176" ry="112" fill="#1C1D22"/>
+      <rect x="158" y="238" width="46" height="62" fill="#26272D"/>
+      <ellipse cx="117" cy="178" rx="8" ry="16" fill="#2B2C33"/>
+      <ellipse cx="245" cy="178" rx="8" ry="16" fill="#2B2C33"/>
+      <ellipse cx="181" cy="158" rx="78" ry="90" fill="#191A1F"/>
+      <ellipse cx="181" cy="176" rx="64" ry="78" fill="#31323A"/>
+      <ellipse cx="181" cy="112" rx="66" ry="42" fill="#191A1F"/>
+
+      <g stroke="#CFEAFF" fill="none" stroke-width="1" stroke-opacity="0.75">
+        <ellipse cx="181" cy="176" rx="64" ry="78" stroke-opacity="0.32"/>
+        <path d="M138 146 C147 139 163 138 174 143"/>
+        <path d="M192 143 C203 138 219 139 226 148"/>
+        <path d="M140 165 C148 171 165 171 173 164"/>
+        <path d="M192 164 C200 154 218 154 226 163 C218 172 200 172 192 164 Z"/>
+        <path d="M183 152 L180 196"/>
+        <path d="M166 202 C173 209 190 209 197 201"/>
+        <path d="M157 224 C167 216 196 216 206 223"/>
+        <path d="M157 224 C168 237 195 237 206 223"/>
+      </g>
+      <g fill="#FFFFFF" fill-opacity="0.92">
+        <circle cx="156" cy="166" r="1.9"/><circle cx="209" cy="163" r="1.9"/>
+        <circle cx="119" cy="178" r="1.9"/><circle cx="243" cy="178" r="1.9"/>
+        <circle cx="146" cy="200" r="1.9"/><circle cx="216" cy="198" r="1.9"/>
+        <circle cx="181" cy="202" r="1.9"/>
+        <circle cx="158" cy="225" r="1.9"/><circle cx="205" cy="223" r="1.9"/>
+        <circle cx="181" cy="234" r="1.9"/>
+      </g>
+      <g stroke="#CFEAFF" stroke-width="1.2" fill="none">
+        <path d="M116 120 L116 98 L138 98"/><path d="M224 98 L246 98 L246 120"/>
+        <path d="M246 248 L246 270 L224 270"/><path d="M138 270 L116 270 L116 248"/>
+      </g>
+      <text x="116" y="90" fill="#CFEAFF" font-size="9" font-weight="600" letter-spacing="1.2" font-family="ui-monospace,Menlo,monospace">TRK 07</text>
+    </svg>
+    <div class="screw" style="top:5px;left:5px"></div>
+    <div class="screw" style="top:5px;right:5px"></div>
+    <div class="screw" style="bottom:5px;left:5px"></div>
+    <div class="screw" style="bottom:5px;right:5px"></div>
+  </div>
+</div>
+
+<div class="scale metal">
+  <span class="engrave">Face</span>
+  <div class="ticks"></div>
+  <span class="engrave">24 ms</span>
+</div>
+
+<div class="readout">
+  <div class="row"><div class="k">Smile</div>
+    <div class="seg"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+    <div class="v mono lit">.941</div></div>
+  <div class="row"><div class="k">Eye L</div>
+    <div class="seg"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+    <div class="v mono lit">.981</div></div>
+  <div class="row"><div class="k">Eye R</div>
+    <div class="seg"><i class="warn"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="v mono" style="color:#FFB44A;text-shadow:0 0 10px rgba(255,180,74,.45)">.110</div></div>
+  <div class="pose">
+    <div><div class="k">Yaw</div><div class="v mono lit">&minus;12.4</div></div>
+    <div><div class="k">Pitch</div><div class="v mono lit">+3.1</div></div>
+    <div><div class="k">Roll</div><div class="v mono lit">+0.8</div></div>
+  </div>
+</div>
+
+<div class="deck metal">
+  <div class="dialwrap">
+    <div class="dial"><div class="notch"></div></div>
+    <div class="engrave" style="margin-top:9px">Fast</div>
+  </div>
+  <div class="switches">
+    <div class="sw"><div class="rocker on"><b></b></div><span class="pip on"></span><span class="engrave">Contours</span></div>
+    <div class="sw"><div class="rocker on"><b></b></div><span class="pip on"></span><span class="engrave">Landmarks</span></div>
+    <div class="sw"><div class="rocker off"><b></b></div><span class="pip"></span><span class="engrave">Mesh fill</span></div>
+  </div>
+</div>
+
+<svg class="grain" xmlns="http://www.w3.org/2000/svg"><filter id="n">
+  <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/>
+  <feColorMatrix type="saturate" values="0"/>
+</filter><rect width="100%" height="100%" filter="url(#n)" opacity="0.14"/></svg>
+
+</body></html>

@@ -1,0 +1,99 @@
+/* Language taken from the supplied reference: near-black ground, one saturated
+   red atmosphere behind the hero, grouped dark cards, bold rounded type. */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:390px;height:844px;overflow:hidden}
+body{
+  background:#0B0B0C;color:#fff;position:relative;
+  font-family:"SF Pro Rounded","SF Pro Display",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{text-decoration:none;color:inherit}
+.mono{font-family:ui-monospace,"SF Mono",SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+
+/* The glow is one ellipse behind the hero, fully resolved to black before the
+   first card. Layered or repeated washes are what make this look cheap. */
+.glow{
+  position:absolute;left:0;right:0;top:0;height:520px;z-index:0;
+  background:radial-gradient(125% 46% at 50% 22%,
+    #B32319 0%, #8A1A12 26%, #4E0F0B 48%, #1C0808 70%, #0B0B0C 88%);
+}
+.glow.soft{height:360px;
+  background:radial-gradient(130% 42% at 50% 6%,
+    #931C14 0%, #63120C 30%, #300B08 52%, #130707 72%, #0B0B0C 90%);
+}
+.page{position:relative;z-index:1;height:100%}
+
+/* ── Type ─────────────────────────────────────────────────────────────── */
+.h-hero{font-size:30px;font-weight:700;letter-spacing:-.4px;text-align:center}
+.sub{font-size:14px;font-weight:500;color:rgba(255,255,255,.62);text-align:center;margin-top:5px}
+.h-sect{font-size:20px;font-weight:700;letter-spacing:-.3px}
+.p-sect{font-size:13.5px;font-weight:500;color:rgba(255,255,255,.55);line-height:1.5;margin-top:7px}
+
+/* ── Chrome ───────────────────────────────────────────────────────────── */
+.navrow{display:flex;align-items:center;padding:14px 18px 0;gap:12px}
+.circlebtn{
+  width:42px;height:42px;border-radius:50%;flex:none;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.10);
+  display:flex;align-items:center;justify-content:center;
+}
+.navtitle{font-size:17px;font-weight:700;letter-spacing:-.2px}
+
+/* ── Hero tile ────────────────────────────────────────────────────────── */
+.tile{
+  width:104px;height:104px;border-radius:30px;margin:0 auto;
+  background:linear-gradient(160deg,#FFFFFF 0%,#EDEDEE 100%);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 14px 34px rgba(0,0,0,.45);
+}
+
+/* ── Primary pill ─────────────────────────────────────────────────────── */
+.pill{
+  height:54px;border-radius:27px;background:#D9382E;
+  display:flex;align-items:center;gap:10px;padding:0 22px 0 7px;
+  margin:0 auto;width:max-content;
+  box-shadow:0 10px 26px rgba(217,56,46,.34);
+}
+.pill .ic{width:40px;height:40px;border-radius:50%;background:#fff;flex:none;
+  display:flex;align-items:center;justify-content:center}
+.pill span{font-size:16px;font-weight:700;letter-spacing:-.1px}
+
+/* ── Grouped card ─────────────────────────────────────────────────────── */
+.card{
+  margin:0 18px;border-radius:22px;background:#141416;
+  border:1px solid rgba(255,255,255,.07);overflow:hidden;
+}
+.row{display:flex;align-items:center;gap:16px;padding:0 18px;height:64px}
+.row + .row{box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.row .glyph{width:26px;flex:none;display:flex;justify-content:center}
+.row .label{font-size:16px;font-weight:600;letter-spacing:-.1px;flex:1}
+.row .tag{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.38)}
+.row.off .label{color:rgba(255,255,255,.42)}
+.chev{color:rgba(255,255,255,.34);flex:none}
+
+/* ── Metric rows ──────────────────────────────────────────────────────── */
+.metric{padding:15px 18px}
+.metric + .metric{box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.metric .top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.metric .name{font-size:15px;font-weight:600;flex:1}
+.metric .val{font-size:15px;font-weight:700}
+.track{height:6px;border-radius:3px;background:rgba(255,255,255,.09);overflow:hidden}
+.track i{display:block;height:100%;border-radius:3px;background:#D9382E}
+.track i.hot{background:#F0A030}
+
+/* ── Pose ─────────────────────────────────────────────────────────────── */
+.pose{display:flex;padding:18px}
+.pose div{flex:1;text-align:center}
+.pose .k{font-size:12px;font-weight:600;color:rgba(255,255,255,.45);margin-bottom:6px}
+.pose .v{font-size:22px;font-weight:700;letter-spacing:-.6px}
+
+/* ── Live chip over the viewport ──────────────────────────────────────── */
+.stage{margin:0 18px;border-radius:26px;overflow:hidden;position:relative;
+  background:#0E0E10;border:1px solid rgba(255,255,255,.08)}
+.chip{
+  position:absolute;left:14px;bottom:14px;display:flex;align-items:center;gap:8px;
+  height:34px;padding:0 14px;border-radius:17px;background:rgba(10,10,11,.72);
+  border:1px solid rgba(255,255,255,.12);
+  font-size:13px;font-weight:600;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:#D9382E;
+  box-shadow:0 0 9px rgba(217,56,46,.9)}

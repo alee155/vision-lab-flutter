@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Settings</title><link rel="stylesheet" href="lab.css"></head><body><div class="stage"><svg width="390" height="530" viewBox="0 0 390 530" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <rect width="390" height="530" fill="#0C0C0F"/>
+ <ellipse cx="195" cy="250" rx="250" ry="250" fill="#16161B"/>
+ <ellipse cx="195" cy="250" rx="150" ry="160" fill="#E23A2E" fill-opacity="0.07"/>
+ <ellipse cx="195" cy="612" rx="200" ry="130" fill="#1F1F26"/>
+ <rect x="168" y="330" width="54" height="72" fill="#2A2A33"/>
+ <ellipse cx="121" cy="258" rx="9" ry="18" fill="#2F2F3A"/>
+ <ellipse cx="269" cy="258" rx="9" ry="18" fill="#2F2F3A"/>
+ <ellipse cx="195" cy="234" rx="86" ry="100" fill="#1B1B21"/>
+ <ellipse cx="195" cy="254" rx="72" ry="88" fill="#36363F"/>
+ <ellipse cx="195" cy="184" rx="74" ry="46" fill="#1B1B21"/>
+
+ <g stroke="#FF6B5A" fill="none" stroke-width="1.3" stroke-opacity="0.85">
+  <ellipse cx="195" cy="254" rx="72" ry="88" stroke-opacity="0.32"/>
+  <path d="M147 220c10-7 28-8 40-2M203 218c12-6 30-5 39 5"/>
+  <path d="M150 243c10 7 28 7 38-1"/>
+  <path d="M203 242c9-11 28-11 38 0-10 11-29 11-38 0z"/>
+  <path d="M198 227l-4 48M177 284c9-8 30-8 40 0M177 284c10 14 30 14 40 0"/>
+  <path d="M170 312c12-9 34-9 46 1M170 312c13 16 34 16 46 1"/>
+ </g>
+ <g fill="#fff">
+  <circle cx="168" cy="245" r="2.6"/><circle cx="222" cy="242" r="2.6"/>
+  <circle cx="155" cy="284" r="2.6"/><circle cx="235" cy="281" r="2.6"/>
+  <circle cx="195" cy="286" r="2.6"/>
+  <circle cx="172" cy="313" r="2.6"/><circle cx="218" cy="311" r="2.6"/>
+  <circle cx="195" cy="323" r="2.6"/>
+ </g>
+ <g stroke="#E23A2E" stroke-width="2.6" fill="none" stroke-linecap="round">
+  <path d="M118 182v-18a8 8 0 0 1 8-8h18M264 156h18a8 8 0 0 1 8 8v18"/>
+  <path d="M290 330v18a8 8 0 0 1-8 8h-18M144 356h-18a8 8 0 0 1-8-8v-18"/>
+ </g>
+</svg></div>
+<div class="topbar">
+  <a class="circlebtn" href="#"><svg width="16" height="14" viewBox="0 0 17 15" fill="none"><path d="M7.5 1 1 7.5 7.5 14M1.2 7.5H16" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div class="t">Face Detection</div>
+</div>
+<div class="scrim"></div>
+<div class="modal">
+  <div class="grab"></div>
+  <div style="display:flex;align-items:center;padding:0 2px 18px">
+    <div class="h2" style="flex:1;font-size:22px">Settings</div>
+    <a class="circlebtn" href="#" style="width:34px;height:34px">
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13"
+        stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></a>
+  </div>
+
+  <div class="eyebrow" style="padding:0 2px 10px">Accuracy</div>
+  <div class="seg"><span class="on">Fast</span><span>Accurate</span></div>
+
+  <div class="eyebrow" style="padding:22px 2px 10px">What the model returns</div>
+  <div class="card" style="margin:0">
+    <div class="row"><div style="flex:1"><div class="label">Contours</div><div class="sub">133 outline points</div></div><div class="cost">+18 ms</div><div class="sw on"></div></div>
+    <div class="row"><div style="flex:1"><div class="label">Landmarks</div><div class="sub">Eyes, nose, mouth, ears</div></div><div class="cost">+2 ms</div><div class="sw on"></div></div>
+    <div class="row"><div style="flex:1"><div class="label">Expression</div><div class="sub">Smile and eye-open scores</div></div><div class="cost">+3 ms</div><div class="sw on"></div></div>
+    <div class="row"><div style="flex:1"><div class="label">Tracking</div><div class="sub">Stable ids across frames</div></div><div class="cost"></div><div class="sw on"></div></div>
+  </div>
+  <div class="body" style="padding:12px 4px 0">Timings measured on this device over
+    the last 120 frames.</div>
+
+  <div class="eyebrow" style="padding:20px 2px 10px">Overlay</div>
+  <div class="card" style="margin:0">
+    <div class="row"><div style="flex:1"><div class="label">Mesh</div><div class="sub">Draw contours over the face</div></div><div class="cost"></div><div class="sw on"></div></div>
+    <div class="row"><div style="flex:1"><div class="label">Mirror</div><div class="sub">Flip the front camera</div></div><div class="cost"></div><div class="sw on"></div></div>
+  </div>
+</div></body></html>

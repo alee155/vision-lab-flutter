@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Face Detection</title><link rel="stylesheet" href="lab.css"></head><body><div class="stage"><svg width="390" height="530" viewBox="0 0 390 530" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <rect width="390" height="530" fill="#0C0C0F"/>
+ <ellipse cx="195" cy="250" rx="250" ry="250" fill="#16161B"/>
+ <ellipse cx="195" cy="250" rx="150" ry="160" fill="#E23A2E" fill-opacity="0.07"/>
+ <ellipse cx="195" cy="612" rx="200" ry="130" fill="#1F1F26"/>
+ <rect x="168" y="330" width="54" height="72" fill="#2A2A33"/>
+ <ellipse cx="121" cy="258" rx="9" ry="18" fill="#2F2F3A"/>
+ <ellipse cx="269" cy="258" rx="9" ry="18" fill="#2F2F3A"/>
+ <ellipse cx="195" cy="234" rx="86" ry="100" fill="#1B1B21"/>
+ <ellipse cx="195" cy="254" rx="72" ry="88" fill="#36363F"/>
+ <ellipse cx="195" cy="184" rx="74" ry="46" fill="#1B1B21"/>
+
+ <g stroke="#FF6B5A" fill="none" stroke-width="1.3" stroke-opacity="0.85">
+  <ellipse cx="195" cy="254" rx="72" ry="88" stroke-opacity="0.32"/>
+  <path d="M147 220c10-7 28-8 40-2M203 218c12-6 30-5 39 5"/>
+  <path d="M150 243c10 7 28 7 38-1"/>
+  <path d="M203 242c9-11 28-11 38 0-10 11-29 11-38 0z"/>
+  <path d="M198 227l-4 48M177 284c9-8 30-8 40 0M177 284c10 14 30 14 40 0"/>
+  <path d="M170 312c12-9 34-9 46 1M170 312c13 16 34 16 46 1"/>
+ </g>
+ <g fill="#fff">
+  <circle cx="168" cy="245" r="2.6"/><circle cx="222" cy="242" r="2.6"/>
+  <circle cx="155" cy="284" r="2.6"/><circle cx="235" cy="281" r="2.6"/>
+  <circle cx="195" cy="286" r="2.6"/>
+  <circle cx="172" cy="313" r="2.6"/><circle cx="218" cy="311" r="2.6"/>
+  <circle cx="195" cy="323" r="2.6"/>
+ </g>
+ <g stroke="#E23A2E" stroke-width="2.6" fill="none" stroke-linecap="round">
+  <path d="M118 182v-18a8 8 0 0 1 8-8h18M264 156h18a8 8 0 0 1 8 8v18"/>
+  <path d="M290 330v18a8 8 0 0 1-8 8h-18M144 356h-18a8 8 0 0 1-8-8v-18"/>
+ </g>
+</svg></div>
+<div class="topbar">
+  <a class="circlebtn" href="#"><svg width="16" height="14" viewBox="0 0 17 15" fill="none"><path d="M7.5 1 1 7.5 7.5 14M1.2 7.5H16" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <div class="t">Face Detection</div>
+  <a class="circlebtn" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 8.5h13l-3.2-3.2M19 15.5H6l3.2 3.2" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</div>
+<div class="livechip"><span class="dot"></span>1 face &middot; 24 ms</div>
+
+<div class="sheet">
+  <div class="grab"></div>
+  <div class="stats">
+    <div class="stat"><div class="k">Smile</div><div class="v">94%</div><div class="bar"><i style="width:94%;background:#E23A2E"></i></div></div>
+    <div class="stat"><div class="k">Left eye</div><div class="v">98%</div><div class="bar"><i style="width:98%;background:#E23A2E"></i></div></div>
+    <div class="stat"><div class="k">Right eye</div><div class="v">11%</div><div class="bar"><i style="width:11%;background:#F0A030"></i></div></div>
+  </div>
+  <div class="pose">
+    <div><div class="k">Yaw</div><div class="v">&minus;12.4&deg;</div></div>
+    <div><div class="k">Pitch</div><div class="v">+3.1&deg;</div></div>
+    <div><div class="k">Roll</div><div class="v">+0.8&deg;</div></div>
+  </div>
+  <div class="controls">
+    <div class="ctl on"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M4 5h4l1.4-2h5.2L16 5h4a1.6 1.6 0 0 1 1.6 1.6v11.8A1.6 1.6 0 0 1 20 20H4a1.6 1.6 0 0 1-1.6-1.6V6.6A1.6 1.6 0 0 1 4 5zm8 3.6a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8z"/></svg><span>Photo</span></div>
+    <div class="ctl"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 8.6a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8zm9.4 3.4c0 .5 0 .9-.1 1.4l1.9 1.5a.45.45 0 0 1 .1.57l-1.8 3.1a.45.45 0 0 1-.55.2l-2.2-.9a7 7 0 0 1-2.3 1.35l-.35 2.4a.45.45 0 0 1-.44.38h-3.6a.45.45 0 0 1-.44-.38l-.35-2.4a7 7 0 0 1-2.3-1.35l-2.2.9a.45.45 0 0 1-.55-.2l-1.8-3.1a.45.45 0 0 1 .1-.57l1.9-1.5a7.2 7.2 0 0 1 0-2.8l-1.9-1.5a.45.45 0 0 1-.1-.57l1.8-3.1a.45.45 0 0 1 .55-.2l2.2.9A7 7 0 0 1 9.3 4.4l.35-2.4a.45.45 0 0 1 .44-.38h3.6a.45.45 0 0 1 .44.38l.35 2.4a7 7 0 0 1 2.3 1.35l2.2-.9a.45.45 0 0 1 .55.2l1.8 3.1a.45.45 0 0 1-.1.57l-1.9 1.5c.1.5.1.9.1 1.4z"/></svg><span>Settings</span></div>
+  </div>
+</div></body></html>
