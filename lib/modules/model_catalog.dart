@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../design/palette.dart';
 import '../features/face/face_screen.dart';
 import '../features/ink/ink_screen.dart';
+import '../features/object/object_screen.dart';
 
 /// One ML Kit capability. Adding object detection later is an entry here plus
 /// a screen — the shell, camera rig and coordinate maths are already shared.
@@ -34,6 +35,7 @@ class VisionModel {
 
 Widget _faceScreen(BuildContext context) => const FaceScreen();
 Widget _inkScreen(BuildContext context) => const InkScreen();
+Widget _objectScreen(BuildContext context) => const ObjectScreen();
 
 const modelCatalog = <VisionModel>[
   VisionModel(
@@ -52,6 +54,7 @@ const modelCatalog = <VisionModel>[
     summary: 'Boxes and stable tracking ids, five per frame',
     icon: Icons.view_in_ar,
     accent: Brand.amber,
+    builder: _objectScreen,
   ),
   VisionModel(
     index: '03',
