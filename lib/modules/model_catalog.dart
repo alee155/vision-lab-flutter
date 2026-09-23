@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../design/palette.dart';
 import '../features/face/face_screen.dart';
 import '../features/ink/ink_screen.dart';
+import '../features/label/label_screen.dart';
 import '../features/object/object_screen.dart';
 
 /// One ML Kit capability. Adding object detection later is an entry here plus
@@ -36,6 +37,7 @@ class VisionModel {
 Widget _faceScreen(BuildContext context) => const FaceScreen();
 Widget _inkScreen(BuildContext context) => const InkScreen();
 Widget _objectScreen(BuildContext context) => const ObjectScreen();
+Widget _labelScreen(BuildContext context) => const LabelScreen();
 
 const modelCatalog = <VisionModel>[
   VisionModel(
@@ -72,5 +74,6 @@ const modelCatalog = <VisionModel>[
     summary: 'Names what is in the frame, ~400 concepts',
     icon: Icons.sell,
     accent: Brand.emerald,
+    builder: _labelScreen,
   ),
 ];

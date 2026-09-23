@@ -11,15 +11,16 @@ void main() {
     expect(find.text('Vision Lab'), findsOneWidget);
     expect(find.text('Open'), findsOneWidget);
     expect(find.text('Object Detection'), findsOneWidget);
-    expect(find.text('Soon'), findsOneWidget);
+    expect(find.text('Digital Ink'), findsOneWidget);
+    // Every model is built.
+    expect(find.text('Soon'), findsNothing);
   });
 
-  test('the built models are wired up', () {
+  test('every model in the catalog is wired up', () {
     expect(modelCatalog, hasLength(4));
-    expect(modelCatalog.where((m) => m.ready).map((m) => m.name),
-        containsAll(<String>['Face Detection', 'Digital Ink', 'Object Detection']));
-    expect(modelCatalog.where((m) => !m.ready), hasLength(1));
+    expect(modelCatalog.every((m) => m.ready), isTrue);
     expect(modelCatalog.map((m) => m.accent).toSet(), hasLength(4));
+    expect(modelCatalog.first.name, 'Face Detection');
   });
 
   group('LatencyLedger', () {
