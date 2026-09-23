@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../design/palette.dart';
 import '../features/face/face_screen.dart';
+import '../features/ink/ink_screen.dart';
 
 /// One ML Kit capability. Adding object detection later is an entry here plus
 /// a screen — the shell, camera rig and coordinate maths are already shared.
@@ -32,6 +33,7 @@ class VisionModel {
 }
 
 Widget _faceScreen(BuildContext context) => const FaceScreen();
+Widget _inkScreen(BuildContext context) => const InkScreen();
 
 const modelCatalog = <VisionModel>[
   VisionModel(
@@ -58,6 +60,7 @@ const modelCatalog = <VisionModel>[
     summary: 'Handwriting and sketches, recognised on device',
     icon: Icons.draw,
     accent: Brand.violet,
+    builder: _inkScreen,
   ),
   VisionModel(
     index: '04',

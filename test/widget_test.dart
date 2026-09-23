@@ -11,14 +11,14 @@ void main() {
     expect(find.text('Vision Lab'), findsOneWidget);
     expect(find.text('Open'), findsOneWidget);
     expect(find.text('Object Detection'), findsOneWidget);
-    expect(find.text('Soon'), findsNWidgets(3));
+    expect(find.text('Soon'), findsNWidgets(2));
   });
 
   test('the built models are wired up', () {
     expect(modelCatalog, hasLength(4));
     expect(modelCatalog.where((m) => m.ready).map((m) => m.name),
-        containsAll(<String>['Face Detection']));
-    expect(modelCatalog.where((m) => !m.ready), hasLength(3));
+        containsAll(<String>['Face Detection', 'Digital Ink']));
+    expect(modelCatalog.where((m) => !m.ready), hasLength(2));
     expect(modelCatalog.map((m) => m.accent).toSet(), hasLength(4));
   });
 
