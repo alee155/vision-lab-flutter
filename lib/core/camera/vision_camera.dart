@@ -51,7 +51,9 @@ class VisionCamera extends ChangeNotifier {
 
   set onFrame(FrameHandler? handler) => _onFrame = handler;
 
-  Future<void> start({  prefer = CameraLensDirection.front}) async {
+  Future<void> start({
+    CameraLensDirection prefer = CameraLensDirection.front,
+  }) async {
     if (_busy) return;
     _busy = true;
     try {
